@@ -1,3 +1,5 @@
+**English** · [Русский](README.ru.md)
+
 # ZapisBOT — self-hosted Telegram booking bot
 
 White-label appointment booking system for service businesses (barbershops,
@@ -6,8 +8,8 @@ Telegram** — no web panel required.
 
 You run it yourself: drop in your bot token, edit `config.yaml`, start it.
 
-> **Язык интерфейса бота — русский.** Все сообщения, кнопки и команды на русском.
-> Этот README (для разработчика/продавца) — на английском.
+> **The bot's interface is in Russian** — all messages, buttons and commands.
+> This README is in English; see [README.ru.md](README.ru.md) for Russian.
 
 ---
 
@@ -173,15 +175,15 @@ app/
 
 ---
 
-## License / Лицензия
+## License
 
 Licensed under the **PolyForm Noncommercial License 1.0.0** — see [LICENSE.md](LICENSE.md).
 
-**Можно** (для некоммерческих целей): использовать, изменять, форкать, распространять.
-**Нельзя**: использовать в коммерческих целях без отдельного разрешения автора.
-**Обязательно**: сохранять указание автора (строку `Required Notice:` из LICENSE.md) во всех копиях и производных.
+**Allowed** (for noncommercial purposes): use, modify, fork, distribute.
+**Not allowed**: commercial use without the author's separate permission.
+**Required**: keep the author attribution (the `Required Notice:` line from LICENSE.md) in all copies and derivatives.
 
-> ⚠️ Это «source-available», а не OSI open-source: лицензия запрещает коммерческое
-> использование, поэтому GitHub пометит её как нестандартную/«Other». Это ожидаемо.
+> ⚠️ This is "source-available", not OSI open-source: the license forbids commercial
+> use, so GitHub will mark it as non-standard / "Other". That's expected.
 
-За коммерческой лицензией — свяжитесь с автором (контакт в `Required Notice`).
+For a commercial license, contact the author (see the `Required Notice`).
