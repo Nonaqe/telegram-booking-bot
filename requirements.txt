@@ -1,0 +1,9 @@
+aiogram>=3.4,<3.7
+SQLAlchemy>=2.0,<2.1
+aiosqlite>=0.19
+APScheduler>=3.10,<4.0
+PyYAML>=6.0
+tzdata>=2024.1
+backports.zoneinfo>=0.2.1; python_version < "3.9"
+# Optional PostgreSQL driver (uncomment to use):
+# asyncpg>=0.29

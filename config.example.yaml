@@ -1,0 +1,117 @@
+# ============================================================
+#  ZapisBOT — self-hosted Telegram booking system
+#  Copy this file to config.yaml and edit the values below.
+# ============================================================
+
+# Telegram bot token from @BotFather.
+# Can be overridden by environment variable BOT_TOKEN.
+bot_token: "PUT-YOUR-BOT-TOKEN-HERE"
+
+# Public name of the business (shown to clients).
+business_name: "My Barbershop"
+
+# IANA timezone name, e.g. "Europe/Moscow", "Europe/Warsaw", "America/New_York".
+timezone: "Europe/Moscow"
+
+# Currency symbol/code used when prices are shown.
+currency: "RUB"
+
+# Show prices to clients? If false, the bot acts as a pure booking system.
+show_prices: true
+
+# Telegram user IDs that get full ADMIN access (owner of the business).
+# Find your id by writing to @userinfobot.
+admins:
+  - 123456789
+
+# Database connection.
+# SQLite (default, zero-config):
+database_url: "sqlite+aiosqlite:///./zapisbot.db"
+# PostgreSQL example (install asyncpg first):
+# database_url: "postgresql+asyncpg://user:password@localhost:5432/zapisbot"
+
+# Контакты салона — показываются в разделе «ℹ️ О нас / Контакты» и команде /about.
+# Любое поле можно убрать.
+contacts:
+  address: "г. Москва, ул. Примерная, 1"
+  phone: "+7 999 123-45-67"
+  maps_url: "https://maps.google.com/?q=..."
+  instagram: "https://instagram.com/yoursalon"
+  telegram: "https://t.me/yoursalon"
+
+# ------------------------------------------------------------
+#  Services offered. Each service has a duration (minutes) and price.
+#  These are seeded into the DB on first run; afterwards manage them
+#  from the in-Telegram admin panel (/admin -> Services).
+# ------------------------------------------------------------
+services:
+  - name: "Haircut"
+    duration: 45
+    price: 1500
+  - name: "Beard trim"
+    duration: 30
+    price: 800
+  - name: "Haircut + Beard"
+    duration: 75
+    price: 2000
+
+# ------------------------------------------------------------
+#  Masters (staff). Seeded on first run, manage later via admin panel.
+#  tg_id is optional — set it so the master can use the bot with the
+#  MASTER role and see their own schedule.
+#  working_hours: per weekday (mon..sun). null = day off.
+#  Format "HH:MM-HH:MM".
+# ------------------------------------------------------------
+masters:
+  - name: "Alex"
+    tg_id: null
+    working_hours:
+      mon: "10:00-19:00"
+      tue: "10:00-19:00"
+      wed: "10:00-19:00"
+      thu: "10:00-19:00"
+      fri: "10:00-19:00"
+      sat: "11:00-16:00"
+      sun: null
+    services: ["Haircut", "Beard trim", "Haircut + Beard"]
+
+# ------------------------------------------------------------
+#  Business rules. Seeded into the settings table on first run;
+#  editable at runtime via /admin -> Settings.
+# ------------------------------------------------------------
+rules:
+  # Buffer time (minutes) added after each booking before the next slot.
+  buffer_minutes: 10
+  # Granularity of generated start slots (minutes).
+  slot_step_minutes: 15
+  # How many days ahead clients may book.
+  booking_horizon_days: 14
+  # Minimum lead time before a booking start (minutes) — no last-second booking.
+  min_lead_minutes: 60
+
+  # Cancellation rules.
+  # Min hours before start that a client may cancel without penalty.
+  cancel_min_hours: 3
+  # Max cancellations within the rolling window before the client is restricted.
+  cancel_limit_count: 3
+  cancel_limit_window_days: 30
+
+  # No-show rules.
+  # Number of no-shows that triggers an automatic blacklist.
+  no_show_blacklist_threshold: 2
+
+  # Reminders.
+  reminder_24h: true
+  reminder_1h: true
+
+  # Data retention (days). Old records are purged daily.
+  retention_completed_days: 7
+  retention_cancelled_days: 7
+  # No-show records are kept longer (set 0 to keep forever).
+  retention_no_show_days: 180
+
+  # Anti-spam / anti-bot (editable later in /admin -> Settings).
+  max_active_bookings: 3        # max upcoming bookings per client
+  booking_cooldown_seconds: 0   # min seconds between creating bookings (0 = off)
+  require_phone: false          # client must share phone before booking
+  max_client_reschedules: 2     # max times a client may reschedule one booking
